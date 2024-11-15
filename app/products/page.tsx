@@ -1,12 +1,7 @@
 'use client';
+import { Product } from '@/types/products';
 import { useState, useEffect } from 'react';
 
-interface Product {
-  _id: string | { toString(): string };
-  name: string;
-  description: string;
-  price: number;
-}
 
 const ProductsPage = () => {
   const [products, setProducts] = useState<Product[]>([]);
