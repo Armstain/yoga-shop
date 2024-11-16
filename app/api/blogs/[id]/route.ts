@@ -3,7 +3,6 @@ import { NextRequest, NextResponse } from 'next/server';
 import clientPromise from '@/lib/mongodb';
 import { ObjectId } from 'mongodb';
 
-// Handle GET request
 export async function GET(
   request: NextRequest,
   { params }: { params: { id: string } }
@@ -12,62 +11,55 @@ export async function GET(
     const client = await clientPromise;
     const db = client.db("Yoga-shop");
 
-    // Validate ID format
+    console.log('Searching for blog with ID:', params.id);
+
     if (!ObjectId.isValid(params.id)) {
+      console.log('Invalid ObjectId format');
       return NextResponse.json(
-        { success: false, error: 'Invalid blog ID format' },
+        { error: 'Invalid blog ID format' },
         { status: 400 }
       );
     }
 
-    // Fetch the blog by ID
     const blog = await db
       .collection("blogs")
-      .findOne({ _id: new ObjectId(params.id) });
+      .findOne({
+        _id: new ObjectId(params.id)
+      });
+
+    console.log('Database query result:', blog);
 
     if (!blog) {
       return NextResponse.json(
-        { success: false, error: 'Blog not found' },
+        { error: 'Blog not found' },
         { status: 404 }
       );
     }
 
-    return NextResponse.json({ success: true, data: blog });
+    return NextResponse.json(blog);
   } catch (error) {
-    console.error('GET Error:', error);
+    console.error('Detailed error:', error);
     return NextResponse.json(
-      { success: false, error: 'Failed to fetch blog' },
+      { error: 'Failed to fetch blog', details: error instanceof Error ? error.message : 'Unknown error' },
       { status: 500 }
     );
   }
 }
 
-// Handle POST request
 export async function POST(request: NextRequest) {
   try {
     const client = await clientPromise;
     const db = client.db("Yoga-shop");
-
-    // Parse request body
     const data = await request.json();
 
-    // Basic validation (example: check if title exists)
-    if (!data.title || !data.content) {
-      return NextResponse.json(
-        { success: false, error: 'Invalid data. Title and content are required.' },
-        { status: 400 }
-      );
-    }
+    const result = await db.collection("blogs")
+      .insertOne(data);
 
-    // Insert into the database
-    const result = await db.collection("blogs").insertOne(data);
-
-    return NextResponse.json({ success: true, data: result });
+    return NextResponse.json(result);
   } catch (error) {
-    console.error('POST Error:', error);
     return NextResponse.json(
-      { success: false, error: 'Failed to add blog' },
+      { error: 'Failed to add blog' },
       { status: 500 }
     );
   }
-}
+} 
