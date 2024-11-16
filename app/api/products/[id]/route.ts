@@ -1,19 +1,19 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import clientPromise from '@/lib/mongodb';
 import { ObjectId } from 'mongodb';
 
 export async function GET(
-  request: Request,
+  request: NextRequest,
   { params }: { params: { id: string } }
 ) {
   try {
     const client = await clientPromise;
     const db = client.db("Yoga-shop");
-    
+
     const product = await db
       .collection("products")
-      .findOne({ 
+      .findOne({
         _id: new ObjectId(params.id)
       });
 
@@ -26,7 +26,6 @@ export async function GET(
 
     return NextResponse.json(product);
   } catch (error) {
-    console.error('Error fetching product:', error);
     return NextResponse.json(
       { error: 'Failed to fetch product' },
       { status: 500 }
@@ -35,14 +34,14 @@ export async function GET(
 }
 
 export async function PUT(
-  request: Request,
+  request: NextRequest,
   { params }: { params: { id: string } }
 ) {
   try {
     const client = await clientPromise;
     const db = client.db("Yoga-shop");
     const data = await request.json();
-    
+
     const result = await db
       .collection("products")
       .updateOne(
@@ -67,17 +66,17 @@ export async function PUT(
 }
 
 export async function DELETE(
-  request: Request,
+  request: NextRequest,
   { params }: { params: { id: string } }
 ) {
   try {
     const client = await clientPromise;
     const db = client.db("Yoga-shop");
-    
+
     const result = await db
       .collection("products")
-      .deleteOne({ 
-        _id: new ObjectId(params.id) 
+      .deleteOne({
+        _id: new ObjectId(params.id)
       });
 
     if (result.deletedCount === 0) {
@@ -88,7 +87,7 @@ export async function DELETE(
     }
 
     return NextResponse.json({ success: true, result });
-  } catch (error ) {
+  } catch (error) {
     return NextResponse.json(
       { error: 'Failed to delete product' },
       { status: 500 }

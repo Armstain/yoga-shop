@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { MongoClient, ServerApiVersion } from 'mongodb';
 
 if (!process.env.DB_USERNAME || !process.env.DB_PASSWORD) {
@@ -30,8 +29,9 @@ class Singleton {
     return this._instance;
   }
 }
-const clientPromise = process.env.NODE_ENV === 'development' 
-  ? (globalThis as any).mongoClientPromise || ((globalThis as any).mongoClientPromise = Singleton.getInstance())
+const clientPromise = process.env.NODE_ENV === 'development'
+  ? (globalThis as { _mongoClientPromise?: Promise<MongoClient> })._mongoClientPromise
+  || ((globalThis as { _mongoClientPromise?: Promise<MongoClient> })._mongoClientPromise = Singleton.getInstance())
   : Singleton.getInstance();
 
 export default clientPromise;
