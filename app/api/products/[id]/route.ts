@@ -6,7 +6,7 @@ import { ObjectId } from 'mongodb';
 export async function GET(
   request: NextRequest,
   { params }: { params: { id: string } }
-) {
+): Promise<Response> {
   try {
     const client = await clientPromise;
     const db = client.db("Yoga-shop");
@@ -36,7 +36,7 @@ export async function GET(
 export async function PUT(
   request: NextRequest,
   { params }: { params: { id: string } }
-) {
+): Promise<Response> {
   try {
     const client = await clientPromise;
     const db = client.db("Yoga-shop");
@@ -68,7 +68,7 @@ export async function PUT(
 export async function DELETE(
   request: NextRequest,
   { params }: { params: { id: string } }
-) {
+): Promise<Response> {
   try {
     const client = await clientPromise;
     const db = client.db("Yoga-shop");
