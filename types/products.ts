@@ -3,7 +3,8 @@ interface Product {
     name: string;
     description: string;
     price: number;
-    image: string;
+    image?: string;
+    features?: string[];
 }
 
 export type { Product };

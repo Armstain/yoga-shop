@@ -1,8 +1,10 @@
+import Link from "next/link";
 
 const links = [
   { href: '/', label: 'Home' },
   { href: '/products', label: 'Products' },
   { href: '/blogs', label: 'Blogs' },
+  { href: '/social', label: 'Social' },
 ];
 
 
@@ -42,7 +44,8 @@ const Navbar = () => {
     </ul>
   </div>
   <div className="navbar-end">
-    <a className="btn">Dashboard</a>
+    <Link
+     href="/admin">Dashboard</Link>
   </div>
 </div>
 };

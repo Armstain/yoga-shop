@@ -9,6 +9,7 @@ import Image from 'next/image';
 import banner1 from '../public/asstes/d215iounxn361.png';
 import banner2 from '../public/asstes/d215iounxn361.png';
 import banner3 from '../public/asstes/d215iounxn361.png';
+import FeaturedProducts from '@/components/Featured';
 
 const HomePage = () => {
   const bannerImages = [
@@ -62,6 +63,7 @@ const HomePage = () => {
           </SwiperSlide>
         ))}
       </Swiper>
+      <FeaturedProducts />
     </div>
   );
 };
