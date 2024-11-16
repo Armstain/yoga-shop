@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import ProductsManager from './products/ProductsManager';
 import BlogsManager from './blog/BlogsManager';
-import SocialManager from './social/SocialManager';
+// import SocialManager from './social/SocialManager';
 
 const AdminPage = () => {
   const [activeTab, setActiveTab] = useState('products');
@@ -33,7 +33,7 @@ const AdminPage = () => {
         </button>
       </div>
 
-      {activeTab === 'products' ? <ProductsManager /> : activeTab === 'blogs' ? <BlogsManager /> : <SocialManager />}
+      {activeTab === 'products' ? <ProductsManager /> : activeTab === 'blogs' ? <BlogsManager /> : <></>}
     </div>
   );
 };
