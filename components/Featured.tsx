@@ -51,43 +51,53 @@ const FeaturedProducts: React.FC = () => {
   }
 
   return (
-    <section aria-labelledby="featured-products" className="bg-white py-12">
+    <section aria-labelledby="featured-products" className="bg-white py-16 ">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 
           id="featured-products" 
-          className="text-3xl font-bold text-center mb-8"
+          className="text-4xl font-bold text-center text-primary mb-12 relative"
         >
           Featured Products
+          <span className="block h-1 w-24 bg-primary mx-auto mt-4 rounded-full"></span>
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 animate-fadeIn">
           {featuredProducts.map((product) => (
             <article 
               key={product._id}
-              className="border rounded-lg p-6 hover:shadow-lg transition-shadow"
+              className="group bg-white rounded-xl shadow-md hover:shadow-2xl transition-all duration-300 overflow-hidden border border-base-200 relative"
             >
               {product.image && (
-                <div className="relative w-full h-48 mb-4">
+                <div className="relative w-full aspect-[4/3] overflow-hidden">
+                  <div className="absolute top-4 left-4 z-10 bg-primary text-primary-content px-3 py-1 rounded-full text-sm font-semibold">
+                    Featured
+                  </div>
                   <Image
                     src={product.image}
                     alt={product.name}
                     fill
-                    className="object-cover rounded-md"
+                    className="object-cover group-hover:scale-110 transition-transform duration-500"
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   />
                 </div>
               )}
-              <h3 className="text-xl font-semibold mb-2">{product.name}</h3>
-              <p className="text-gray-600 mb-4 line-clamp-2">{product.description}</p>
-              <div className="flex justify-between items-center">
-                <span className="text-lg font-bold">
-                  ${product.price.toFixed(2)}
-                </span>
-                <Link 
-                  href={`/products/${product._id}`}
-                  className="bg-primary text-white px-4 py-2 rounded hover:bg-primary/90 transition-colors"
-                >
-                  View Details
-                </Link>
+              <div className="p-8">
+                <h3 className="text-xl font-semibold mb-3 text-black group-hover:text-primary transition-colors">
+                  {product.name}
+                </h3>
+                <p className="text-base-content/70 mb-6 line-clamp-2">
+                  {product.description}
+                </p>
+                <div className="flex justify-between items-center">
+                  <span className="text-2xl font-bold text-primary">
+                    ${product.price.toFixed(2)}
+                  </span>
+                  <Link 
+                    href={`/products/${product._id}`}
+                    className="px-6 py-3 rounded-full bg-primary text-primary-content hover:bg-primary/90 transition-all duration-300 hover:translate-x-1 font-medium"
+                  >
+                    View Details →
+                  </Link>
+                </div>
               </div>
             </article>
           ))}

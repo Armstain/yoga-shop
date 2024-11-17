@@ -16,5 +16,16 @@ export default {
     },
   },
   plugins: [daisyui],
-
+  daisyui: {
+    themes: [
+      {
+        light: {
+          primary: "#4f46e5",
+          secondary: "#7c3aed",
+          "base-100": "#ffffff",
+          "base-content": "#171717",
+        },
+      },
+    ],
+  },
 } satisfies Config;

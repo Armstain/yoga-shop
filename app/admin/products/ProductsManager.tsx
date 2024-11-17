@@ -75,98 +75,121 @@ const ProductsManager = () => {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit} className="mb-8 space-y-4">
-        <div>
-          <label className="label">Name</label>
-          <input
-            type="text"
-            className="input input-bordered w-full"
-            value={formData.name}
-            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-            required
-          />
-        </div>
-        <div>
-          <label className="label">Description</label>
-          <textarea
-            className="textarea textarea-bordered w-full"
-            value={formData.description}
-            onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-            required
-          />
-        </div>
-        <div>
-          <label className="label">Price</label>
-          <input
-            type="number"
-            step="0.01"
-            className="input input-bordered w-full"
-            value={formData.price}
-            onChange={(e) => setFormData({ ...formData, price: e.target.value })}
-            required
-          />
-        </div>
-        <div>
-          <label className="label">Image URL</label>
-          <input
-            type="url"
-            className="input input-bordered w-full"
-            value={formData.image}
-            onChange={(e) => setFormData({ ...formData, image: e.target.value })}
-          />
-        </div>
-        <button type="submit" className="btn btn-primary">
-          {isEditing ? 'Update Product' : 'Add Product'}
-        </button>
-        {isEditing && (
-          <button
-            type="button"
-            className="btn btn-ghost ml-2"
-            onClick={() => {
-              setIsEditing(null);
-              setFormData({ name: '', description: '', price: '', image: '' });
-            }}
-          >
-            Cancel
-          </button>
-        )}
-      </form>
+    <div className="bg-white rounded-lg shadow-sm border border-gray-100">
+      <div className="p-6">
+        <h2 className="text-2xl font-bold text-gray-800 mb-6">Manage Products</h2>
+        
+        <form onSubmit={handleSubmit} className="mb-8">
+          <div className="grid gap-6 max-w-2xl mx-auto bg-white p-6 rounded-lg border border-gray-100">
+            <div className="form-control">
+              <label className="label">
+                <span className="text-gray-700 font-medium">Product Name</span>
+              </label>
+              <input
+                type="text"
+                className="input input-bordered bg-white border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20"
+                value={formData.name}
+                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                required
+              />
+            </div>
+            
+            <div className="form-control">
+              <label className="label">
+                <span className="text-gray-700 font-medium">Description</span>
+              </label>
+              <textarea
+                className="textarea textarea-bordered bg-white border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20 min-h-[120px]"
+                value={formData.description}
+                onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+                required
+              />
+            </div>
+            
+            <div className="form-control">
+              <label className="label">
+                <span className="text-gray-700 font-medium">Price ($)</span>
+              </label>
+              <input
+                type="number"
+                step="0.01"
+                className="input input-bordered bg-white border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20"
+                value={formData.price}
+                onChange={(e) => setFormData({ ...formData, price: e.target.value })}
+                required
+              />
+            </div>
+            
+            <div className="form-control">
+              <label className="label">
+                <span className="text-gray-700 font-medium">Image URL</span>
+              </label>
+              <input
+                type="url"
+                className="input input-bordered bg-white border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20"
+                value={formData.image}
+                onChange={(e) => setFormData({ ...formData, image: e.target.value })}
+              />
+            </div>
+            
+            <div className="flex gap-4 pt-2">
+              <button 
+                type="submit" 
+                className="btn bg-primary hover:bg-primary/90 text-white border-none flex-1"
+              >
+                {isEditing ? '💾 Update Product' : '➕ Add Product'}
+              </button>
+              {isEditing && (
+                <button
+                  type="button"
+                  className="btn btn-outline hover:bg-gray-100 hover:text-gray-800"
+                  onClick={() => {
+                    setIsEditing(null);
+                    setFormData({ name: '', description: '', price: '', image: '' });
+                  }}
+                >
+                  Cancel
+                </button>
+              )}
+            </div>
+          </div>
+        </form>
 
-      <div className="overflow-x-auto">
-        <table className="table">
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Description</th>
-              <th>Price</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {products.map((product) => (
-              <tr key={product._id}>
-                <td>{product.name}</td>
-                <td>{product.description.substring(0, 50)}...</td>
-                <td>${product.price.toFixed(2)}</td>
-                <td>
-                  <button
-                    className="btn btn-sm btn-info mr-2"
-                    onClick={() => handleEdit(product)}
-                  >
-                    Edit
-                  </button>
-                  <button
-                    className="btn btn-sm btn-error"
-                    onClick={() => handleDelete(product._id)}
-                  >
-                    Delete
-                  </button>
-                </td>
+        <div className="overflow-x-auto rounded-lg border border-gray-100">
+          <table className="table bg-white">
+            <thead className="bg-gray-50">
+              <tr>
+                <th className="text-gray-600">Name</th>
+                <th className="text-gray-600">Description</th>
+                <th className="text-gray-600">Price</th>
+                <th className="text-gray-600">Actions</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {products.map((product) => (
+                <tr key={product._id} className="hover:bg-gray-50">
+                  <td className="font-medium text-black">{product.name}</td>
+                  <td className="text-gray-600">{product.description.substring(0, 50)}...</td>
+                  <td className="font-medium text-primary">${product.price.toFixed(2)}</td>
+                  <td>
+                    <button
+                      className="btn btn-sm bg-blue-500 hover:bg-blue-600 text-white border-none mr-2"
+                      onClick={() => handleEdit(product)}
+                    >
+                      ✏️ Edit
+                    </button>
+                    <button
+                      className="btn btn-sm bg-red-500 hover:bg-red-600 text-white border-none"
+                      onClick={() => handleDelete(product._id)}
+                    >
+                      🗑️ Delete
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );

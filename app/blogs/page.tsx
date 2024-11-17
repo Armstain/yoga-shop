@@ -31,39 +31,46 @@ const BlogPage = () => {
     }, []);
 
     return (
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <h1 className="text-3xl font-bold text-center mb-8">Yoga & Wellness Blog</h1>
-      
-      <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-      {blogs.map((post: Post) => (
-          <article key={post._id} className="bg-white rounded-lg shadow-md overflow-hidden">
-            {post.image ? (
-              <Image
-                src={post.image}
-                alt={post.title}
-                width={500}
-                height={300}
-              />
-            ) : (
-              <div className="w-full h-[300px] bg-gray-200" />
-            )}
-            <div className="p-6">
-              <h2 className="text-xl font-semibold mb-2">{post.title}</h2>
-              <h3 className="text-gray-600 mb-4 line-clamp-3">{post.author}</h3>
-              <h4 className="text-gray-600 mb-4 line-clamp-3">{post.publishedDate}</h4>
-              <p className="text-gray-600 mb-4 line-clamp-3">{post.content}</p>
-              <Link 
-                href={`/blogs/${post._id}`}
-                className="text-indigo-600 hover:text-indigo-800 font-medium"
-              >
-                Read More →
-              </Link>
-            </div>
-          </article>
-        ))}
+        <div className="min-h-screen bg-white p-8">
+            <h1 className="text-3xl font-bold mb-6 text-center text-primary">Yoga & Wellness Blog</h1>
+            <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+                {blogs.map((post: Post) => (
+                    <Link href={`/blogs/${post._id}`} key={post._id}>
+                        <div className="card bg-white border border-gray-200 shadow-sm hover:shadow-lg transition-shadow">
+                            <figure className="relative h-56">
+                                {post.image ? (
+                                    <Image
+                                        src={post.image}
+                                        alt={post.title}
+                                        fill
+                                        className="object-cover"
+                                        sizes="(max-width: 768px) 100vw, 33vw"
+                                    />
+                                ) : (
+                                    <div className="flex items-center justify-center h-full bg-gray-100 w-full">
+                                        <span className="text-gray-400">No image available</span>
+                                    </div>
+                                )}
+                            </figure>
+                            <div className="card-body p-6">
+                                <h2 className="card-title text-lg text-black">{post.title}</h2>
+                                <div className="flex items-center text-sm text-gray-600 mt-2 space-x-4">
+                                    <span className="flex items-center">
+                                        <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                            <path d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" />
+                                        </svg>
+                                        {post.author}
+                                    </span>
+                                    <span>{new Date(post.publishedDate).toLocaleDateString()}</span>
+                                </div>
+                                <p className="text-gray-600 text-sm line-clamp-2 mt-2">{post.content}</p>
+                            </div>
+                        </div>
+                    </Link>
+                ))}
             </div>
         </div>
-    )
-}
+    );
+};
 
 export default BlogPage;

@@ -6,9 +6,9 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import Image from 'next/image';
-import banner1 from '../public/asstes/d215iounxn361.png';
-import banner2 from '../public/asstes/d215iounxn361.png';
-import banner3 from '../public/asstes/d215iounxn361.png';
+import banner1 from '../public/asstes/slide1.png';
+import banner2 from '../public/asstes/slide2.jpg';
+import banner3 from '../public/asstes/slide3.jpg';
 import FeaturedProducts from '@/components/Featured';
 
 const HomePage = () => {

@@ -85,8 +85,8 @@ const BlogsManager = () => {
 
   return (
     <div>
-      <form onSubmit={handleSubmit} className="mb-8 space-y-4">
-        <div>
+      <form onSubmit={handleSubmit} className="mb-8 space-y-4 text-black">
+        <div >
           <label className="label">Title</label>
           <input
             type="text"
@@ -124,7 +124,7 @@ const BlogsManager = () => {
             onChange={(e) => setFormData({ ...formData, image: e.target.value })}
           />
         </div>
-        <button type="submit" className="btn btn-primary">
+        <button type="submit" className="btn btn-primary w-full font-bold text-2xl">
           {isEditing ? 'Update Blog' : 'Add Blog'}
         </button>
         {isEditing && (
@@ -154,9 +154,9 @@ const BlogsManager = () => {
           <tbody>
             {blogs.map((blog) => (
               <tr key={blog._id}>
-                <td>{blog.title}</td>
-                <td>{blog.author}</td>
-                <td>{blog.content.substring(0, 50)}...</td>
+                <td className="text-black">{blog.title}</td>
+                <td className="text-black">{blog.author}</td>
+                <td className="text-black">{blog.content.substring(0, 50)}...</td>
                 <td>
                   <button 
                     className="btn btn-sm btn-info mr-2"

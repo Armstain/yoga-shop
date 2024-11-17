@@ -5,7 +5,7 @@ const nextConfig: NextConfig = {
     ignoreBuildErrors: true,
   },
   images: {
-    domains: ['scontent.cdninstagram.com', 'www.instagram.com'],
+    domains: ['scontent.cdninstagram.com', 'www.instagram.com', 'i.ibb.co.com'],
   },
 };
 

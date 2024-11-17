@@ -22,13 +22,13 @@ const ProductsPage = () => {
   }, []);
 
   return (
-    <div className="p-8">
-      <h1 className="text-2xl font-bold mb-4">Our Products</h1>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div className="min-h-screen bg-white p-8">
+      <h1 className="text-3xl font-bold mb-6 text-center text-primary">Our Products</h1>
+      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
         {products.map((product: Product) => (
           <Link href={`/products/${product._id}`} key={product._id.toString()}>
-            <div className="card bg-base-100 shadow-xl hover:shadow-2xl transition-shadow">
-              <figure className="relative h-48">
+            <div className="card bg-white border border-gray-200 shadow-sm hover:shadow-lg transition-shadow">
+              <figure className="relative h-56">
                 {product.image ? (
                   <Image
                     src={product.image}
@@ -43,10 +43,10 @@ const ProductsPage = () => {
                   </div>
                 )}
               </figure>
-              <div className="card-body">
-                <h2 className="card-title">{product.name}</h2>
-                <p className="text-gray-600 line-clamp-2">{product.description}</p>
-                <p className="text-xl font-bold text-primary">${product.price.toFixed(2)}</p>
+              <div className="card-body p-6">
+                <h2 className="card-title text-lg text-black">{product.name}</h2>
+                <p className="text-gray-600 text-sm line-clamp-2">{product.description}</p>
+                <p className="text-xl font-bold text-primary mt-2">${product.price.toFixed(2)}</p>
               </div>
             </div>
           </Link>
