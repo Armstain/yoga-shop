@@ -1,3 +1,6 @@
+```markdown
+# Yoga Shop
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
@@ -20,6 +23,21 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
+## Features
+
+- **Home Page**: A beautiful landing page with a Swiper slider showcasing banners.
+- **Product Management**: Admin interface to manage products, including adding, editing, and deleting products.
+- **Blog Management**: Admin interface to manage blog posts.
+- **Social Media Integration**: Display Instagram posts and manage them via the admin panel.
+- **Dashboard For Admin**: Simple Dashboard where Admin can do basic CRUD operarations for Products, Blogs and Social Links.
+- **Responsive Design**: Built with Tailwind CSS and DaisyUI for a responsive and modern design.
+
+## Tech Stack
+
+- **Frontend**: Next.js, React, Tailwind CSS, DaisyUI
+- **Backend**: Node.js, MongoDB
+- **APIs**: RESTful APIs for products and blogs management
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:
@@ -34,3 +52,14 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Acknowledgments
+
+- Special thanks to the creators of Next.js and Vercel for their amazing tools and resources.
+```
+
+This README provides an overview of your project, including setup instructions, features, tech stack, and additional resources. You can customize it further based on your specific needs or additional features.
