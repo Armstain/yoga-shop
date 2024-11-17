@@ -1,3 +1,4 @@
+Documentation: https://docs.google.com/document/d/1-ey__pO1b6_tFcw1N5-7W0tXktm_UxvQV0CrGclvN_w/edit?usp=sharing
 ```markdown
 # Yoga Shop
 
@@ -62,4 +63,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - Special thanks to the creators of Next.js and Vercel for their amazing tools and resources.
 ```
 
-This README provides an overview of your project, including setup instructions, features, tech stack, and additional resources. You can customize it further based on your specific needs or additional features.
+
